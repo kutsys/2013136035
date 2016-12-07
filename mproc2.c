@@ -23,7 +23,8 @@ void* subproc(void* num){
        sleep(r);
        count++;
        test_funct(count);
-    }   
+    }
+    pthread_exit("by2!");   
 }
 
 int main()
