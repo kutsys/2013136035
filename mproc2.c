@@ -5,6 +5,7 @@
 #include <time.h>
 void test_funct(int count,int i){
     time_t timer;
+
     struct tm* t;
     timer =time(NULL);
     t = localtime(&timer);
@@ -19,8 +20,9 @@ void test_funct(int count,int i){
 void* subproc(void* i){
    int count =0;
    int n = *(int *)i;
+       
    while(count< 20){
-       srand(time(NULL));
+       
        int r= rand()%10;
        sleep(r);
        count++;
@@ -37,6 +39,7 @@ int main()
     pthread_t p_thread[10];
     void *thread_result;
     int num = 20;
+       srand(time(NULL));
     while(i<10){
         taskID[i]=i;
         res = pthread_create(&p_thread[i], NULL,subproc,(void*)&taskID[i]);

@@ -14,7 +14,7 @@ int main(){
            
         }
         else{
-            execl("/home/hyunji/subproc","./subproc","20",NULL);
+            execl("/home/hyunji/2013136035/subproc","./subproc","20",NULL);
         }
     }
 

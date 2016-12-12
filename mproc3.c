@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <time.h>
-int count =0;
+
 pthread_mutex_t  mutex;
 void test_funct(int m_count,int m_n){
     printf("  ID: %d   COUNT : %d  ",m_n,m_count);
@@ -14,6 +14,7 @@ void test_funct(int m_count,int m_n){
 
 
 void* subproc(void* id){
+	int count = 0;
    int  n = *(int*)id;
    while(count< 20){
        srand(time(NULL));
