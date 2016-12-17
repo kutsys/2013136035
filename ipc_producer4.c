@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
 		printf("Conneted client \n");
 
 	write(clnt_sock,&p_pid,4);
-	write(clnt_sock,p_id,strlen(p_id));  
+	write(clnt_sock,p_id,strlen(p_id)+1);  
          
 	printf("producer : %s, %d\n", p_id,p_pid);
 	sleep(5);
