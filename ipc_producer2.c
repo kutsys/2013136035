@@ -13,10 +13,13 @@ int main(){
     char comm[BUF_SIZE];
     shm_id = shmget( (key_t)KEY_NUM,1024, IPC_CREAT| 0777);
     shm_addr = shmat( shm_id, ( void *)0, 0);
+    printf("input start: ");
     scanf("%s",comm);
-    sprintf( (char *)shm_addr, "%s %d\n", p_id,p_pid);
-    printf("producer : %s, %d\n",p_id, p_pid);
-    sleep(5);
-    printf("consumer : %s\n",(char*)shm_addr);
-
+    if(!strcmp(comm,"start")){
+    	sprintf( (char *)shm_addr, "%s %d\n", p_id,p_pid);
+    	printf("producer : %s, %d\n",p_id, p_pid);
+    	sleep(5);
+    	printf("consumer : %s\n",(char*)shm_addr);
+    }
+    return 0;
 }
