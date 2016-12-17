@@ -15,9 +15,10 @@ int main(){
     int c_pid;
     char start[10];
     int pipe_id,res;
-    printf("please input start:");
+
+    printf("input start: ");
     scanf("%s",start);
-    if(start){
+    if(!strcmp(start,"start")){
         if(access(FIFO_NAME, F_OK)== -1){
             res = mkfifo("/tmp/my_fifo", 0777);
             if (res != 0) exit(EXIT_FAILURE);
