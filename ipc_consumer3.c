@@ -20,17 +20,13 @@ int main(){
     int pid = getpid();
     char sid[11]="hyunji Ra";
     msqid = msgget( (key_t)1234, IPC_CREAT | 0777);
-    char start[10];
 
-    printf("input start : ");
-    scanf("%s",start);
-    if(!strcmp(start,"start")){
+
         msgrcv( msqid, &data, sizeof( t_data), 0, 0);
         printf( "receive: %s\n", data.buff);
         sprintf( data.buff, "consumer: pid=%d, sid=%s",pid,sid);
         msgsnd( msqid, &data, sizeof( t_data),0);
         printf("    send: %s\n",data.buff);
 
-    }
     return 0;
 }
