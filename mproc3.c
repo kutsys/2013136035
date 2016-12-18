@@ -6,18 +6,23 @@
 
 pthread_mutex_t  mutex;
 void test_funct(int m_count,int m_n){
+    time_t ltime;
+    struct tm *ts;
+    ltime = time(NULL);
+    ts = localtime(&ltime);
     printf("  ID: %d   COUNT : %d  ",m_n,m_count);
-    printf("2013136035 Hyeon Ji Ra\n");
-	
+
+    printf("Time: %d-%d-%d %d:%d:%d\n",ts->tm_year+1900,ts->tm_mon+1,ts->tm_mday,ts->tm_hour,ts->tm_min,ts->tm_sec);
+    sleep(2);
 
 }
 
 
 void* subproc(void* id){
-	int count = 0;
+   int count = 0;
    int  n = *(int*)id;
    while(count< 20){
-       srand(time(NULL));
+       
        int r= rand()%10;
        sleep(r);
        pthread_mutex_lock(&mutex);
@@ -36,7 +41,8 @@ int main()
     pthread_mutex_init(&mutex, NULL);
     pthread_t p_thread[10];
     void *thread_result;
-  
+    srand(time(NULL));
+    printf("2013136035 Hyeon Ji Ra\n");
     while(i<10){
         taskID[i] =i;
         res = pthread_create(&p_thread[i], NULL,subproc,(void*)&taskID[i]);
@@ -60,4 +66,3 @@ int main()
     printf("Finished Successfully\n");
     return 0;
 }
-
